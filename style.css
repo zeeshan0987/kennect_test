@@ -1,0 +1,43 @@
+body {
+    text-align: center;
+}
+
+.controls {
+    margin: 20px;
+    position: relative;
+}
+
+#bars-container {
+    display: flex;
+    align-items: flex-end;
+    height: 400px;
+    width: 80%;
+    margin: 0 auto;
+    /* border: 1px solid #000; */
+}
+.bard{
+    display: flex;
+    align-items: flex-end;
+    height: 400px;
+    width: 80%;
+    margin: 0 auto;
+    /* border: 1px solid #000; */
+}
+.bar {
+    background-color: rgb(169, 169, 255);
+    margin: 0 2px;
+    flex: 1;
+    transition: height 0.2s;
+}
+
+.display-item{
+    width: 100%;
+    display: flex;
+    gap:5px;
+    align-items: center;
+    position: absolute;
+    left: 160px;
+    font-size: 13.6px;
+    color:rgb(103, 103, 248) ;
+    
+}

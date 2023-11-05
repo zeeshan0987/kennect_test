@@ -6,6 +6,9 @@ body {
     margin: 20px;
     position: relative;
 }
+.container {
+    position: relative;
+  }
 
 #bars-container {
     display: flex;
@@ -28,16 +31,20 @@ body {
     margin: 0 2px;
     flex: 1;
     transition: height 0.2s;
+    position: relative;
 }
-
-.display-item{
-    width: 100%;
-    display: flex;
-    gap:5px;
-    align-items: center;
+.array-numbers {
     position: absolute;
-    left: 160px;
-    font-size: 13.6px;
+    bottom: -20px;
+    left: 0;
+    width: 80%;
+    margin: 0 auto;
+    font-size: 0.8vw;
     color:rgb(103, 103, 248) ;
-    
+    text-align: center;
+  }
+
+
+.input{
+    margin-top: 100px;
 }

@@ -9,32 +9,48 @@ const shellSortButton = document.getElementById('shellSort');
 const changeSizeButton = document.getElementById('changeSize');
 const display = document.getElementById('display');
 
+
 let bars = [];
 
 function displayItems() {
-  const itemsContainer = document.querySelector("#display");
-  
-  window.items = bars;
-  itemsContainer.innerHTML = "";
-
-  for (const item of bars) {
-    const itemElement = document.createElement("p");
-    itemElement.textContent = item;
-    itemsContainer.appendChild(itemElement);
+  barsContainer.innerHTML = '';
+  for (let i = 0; i < bars.length; i++) {
+    const bar = document.createElement('div');
+    bar.classList.add('bar');
+    bar.style.height = `${bars[i].height}px`;
+    const textElement = document.createElement('span');
+    textElement.innerText = bars[i].height;
+    textElement.classList.add('array-numbers')
+    bar.appendChild(textElement);
+    barsContainer.appendChild(bar);
   }
 }
-
+let size =50
 function generateRandomBars() {
   bars = [];
   barsContainer.innerHTML = '';
-  const barCount = 50; 
+  const barCount = size; 
 
   for (let i = 0; i < barCount; i++) {
+    // const barHeight = Math.floor(Math.random() * 300) + 50;
+    // const bar = document.createElement('div');
+    // bar.classList.add('bar');
+    // bar.style.height = `${barHeight}px`;
+    // bars.push(barHeight);
+    // barsContainer.appendChild(bar);
     const barHeight = Math.floor(Math.random() * 300) + 50;
     const bar = document.createElement('div');
     bar.classList.add('bar');
+    
     bar.style.height = `${barHeight}px`;
-    bars.push(barHeight);
+    
+    // Create and append a text element to display the value
+    const textElement = document.createElement('span');
+    textElement.innerText = barHeight;
+    textElement.classList.add('array-numbers')
+    bar.appendChild(textElement);
+    
+    bars.push({ height: barHeight, element: bar, textElement });
     barsContainer.appendChild(bar);
   }
  
@@ -43,26 +59,30 @@ function generateRandomBars() {
 }
 
 function insertionSort() {
-  barsContainer.innerHTML = '';
+  // barsContainer.innerHTML = '';
     for (let i = 1; i < bars.length; i++) {
-        let currentElement = bars[i];
+        let currentElement = bars[i].height;
         let j = i - 1;
     
-        while (j >= 0 && bars[j] > currentElement) {
-            bars[j + 1] = bars[j];
+        while (j >= 0 && bars[j].height > currentElement) {
+            bars[j + 1].height = bars[j].height;
           j--;
         }
     
-        bars[j + 1] = currentElement;
+        bars[j + 1].height = currentElement;
       }
-    for (let i = 0; i < bars.length; i++) {
-        const bar = document.createElement('div');
-        bar.classList.add('bar');
-        bar.style.height = `${bars[i]}px`;
-        barsContainer.appendChild(bar);
-      }
+    // for (let i = 0; i < bars.length; i++) {
+    //     const bar = document.createElement('div');
+    //     bar.classList.add('bar');
+    //     bar.style.height = `${bars[i].height}px`;
+    //     const textElement = document.createElement('span');
+    //     textElement.innerText = bars[i].height;
+    //     textElement.classList.add('array-numbers')
+    //     bar.appendChild(textElement);
+    //     barsContainer.appendChild(bar);
+    //   }
     
-    console.log(bars)
+    // console.log(bars)
     displayItems();
     
   }
@@ -73,24 +93,24 @@ function selectionSort(){
     let minIndex = i;
 
     for (let j = i + 1; j < n; j++) {
-      if (bars[j] < bars[minIndex]) {
+      if (bars[j].height < bars[minIndex].height) {
         minIndex = j;
       }
     }
 
     if (minIndex !== i) {
-      const temp = bars[i];
-      bars[i] = bars[minIndex];
-      bars[minIndex] = temp;
+      const temp = bars[i].height;
+      bars[i].height = bars[minIndex].height;
+      bars[minIndex].height = temp;
     }
   }
-  for (let i = 0; i < bars.length; i++) {
-    const bar = document.createElement('div');
-    bar.classList.add('bar');
-    bar.style.height = `${bars[i]}px`;
-    barsContainer.appendChild(bar);
-  }
-  console.log(bars)
+  // for (let i = 0; i < bars.length; i++) {
+  //   const bar = document.createElement('div');
+  //   bar.classList.add('bar');
+  //   bar.style.height = `${bars[i]}px`;
+  //   barsContainer.appendChild(bar);
+  // }
+  // console.log(bars)
   displayItems()
 
 }
@@ -102,10 +122,10 @@ function bubbleSort() {
     let swapped = false;
 
     for (let j = 0; j < n - 1 - i; j++) {
-      if (bars[j] > bars[j + 1]) {
-        const temp = bars[j];
-        bars[j] = bars[j + 1];
-        bars[j + 1] = temp;
+      if (bars[j].height > bars[j + 1].height) {
+        const temp = bars[j].height;
+        bars[j].height = bars[j + 1].height;
+        bars[j + 1].height = temp;
         swapped = true;
       }
     }
@@ -113,29 +133,29 @@ function bubbleSort() {
       break;
     }
   }
-  for (let i = 0; i < bars.length; i++) {
-    const bar = document.createElement('div');
-    bar.classList.add('bar');
-    bar.style.height = `${bars[i]}px`;
-    barsContainer.appendChild(bar);
-  }
+  // for (let i = 0; i < bars.length; i++) {
+  //   const bar = document.createElement('div');
+  //   bar.classList.add('bar');
+  //   bar.style.height = `${bars[i]}px`;
+  //   barsContainer.appendChild(bar);
+  // }
   console.log(bars)
   displayItems();
 }
 
 function partition(arr, low, high) {
-	let pivot = arr[high];
+	let pivot = arr[high].height;
 
 	let i = low - 1;
 
 	for (let j = low; j <= high - 1; j++) {
-		if (arr[j] < pivot) {
+		if (arr[j].height < pivot) {
 			i++;
-			[arr[i], arr[j]] = [arr[j], arr[i]]; 
+			[arr[i].height, arr[j].height] = [arr[j].height, arr[i].height]; 
 		}
 	}
 
-	[arr[i + 1], arr[high]] = [arr[high], arr[i + 1]]; 
+	[arr[i + 1].height, arr[high].height] = [arr[high].height, arr[i + 1].height]; 
 	return i + 1; 
 }
 
@@ -148,128 +168,117 @@ function quickSort(arr, low, high) {
 }
 
 function startquicksort() {
-  barsContainer.innerHTML = '';
+  // barsContainer.innerHTML = '';
   quickSort(bars,0 ,bars.length-1)
   
-  for (let i = 0; i < bars.length; i++) {
-    const bar = document.createElement('div');
-    bar.classList.add('bar');
-    bar.style.height = `${bars[i]}px`;
-    barsContainer.appendChild(bar);
-  }
+  // for (let i = 0; i < bars.length; i++) {
+  //   const bar = document.createElement('div');
+  //   bar.classList.add('bar');
+  //   bar.style.height = `${bars[i]}px`;
+  //   barsContainer.appendChild(bar);
+  // }
   console.log(bars)
   displayItems();
 }
 
-function merge(arr, l, m, r)
-{
-	var n1 = m - l + 1;
-	var n2 = r - m;
+function mergeSortInPlace(arr, start = 0, end = arr.length - 1) {
+  if (start < end) {
+      const middle = Math.floor((start + end) / 2);
 
+      // Recursively sort the left and right halves
+      mergeSortInPlace(arr, start, middle);
+      mergeSortInPlace(arr, middle + 1, end);
 
-	var L = new Array(n1); 
-	var R = new Array(n2);
-
-
-	for (var i = 0; i < n1; i++)
-		L[i] = arr[l + i];
-	for (var j = 0; j < n2; j++)
-		R[j] = arr[m + 1 + j];
-
-	var i = 0;
-
-	
-	var j = 0;
-
-	
-	var k = l;
-
-	while (i < n1 && j < n2) {
-		if (L[i] <= R[j]) {
-			arr[k] = L[i];
-			i++;
-		}
-		else {
-			arr[k] = R[j];
-			j++;
-		}
-		k++;
-	}
-
-	while (i < n1) {
-		arr[k] = L[i];
-		i++;
-		k++;
-	}
-
-	while (j < n2) {
-		arr[k] = R[j];
-		j++;
-		k++;
-	}
+      // Merge the sorted halves in place
+      mergeInPlace(arr, start, middle, end);
+  }
 }
 
 
-function mergeSort(arr,l, r){
-	if(l>=r){
-		return;
-	}
-	var m =l+ parseInt((r-l)/2);
-	mergeSort(arr,l,m);
-	mergeSort(arr,m+1,r);
-	merge(arr,l,m,r);
+function mergeInPlace(arr, start, middle, end) {
+  const leftHalf = arr.slice(start, middle + 1);
+  const rightHalf = arr.slice(middle + 1, end + 1);
+
+  let leftIndex = 0;
+  let rightIndex = 0;
+  let arrIndex = start;
+
+  while (leftIndex < leftHalf.length && rightIndex < rightHalf.length) {
+      if (leftHalf[leftIndex].height < rightHalf[rightIndex].height) {
+          arr[arrIndex] = leftHalf[leftIndex];
+          leftIndex++;
+      } else {
+          arr[arrIndex] = rightHalf[rightIndex];
+          rightIndex++;
+      }
+      arrIndex++;
+  }
+
+  while (leftIndex < leftHalf.length) {
+      arr[arrIndex] = leftHalf[leftIndex];
+      leftIndex++;
+      arrIndex++;
+  }
+
+  while (rightIndex < rightHalf.length) {
+      arr[arrIndex] = rightHalf[rightIndex];
+      rightIndex++;
+      arrIndex++;
+  }
 }
 
 
 function startmergeSort() {
-  barsContainer.innerHTML = '';
-  mergeSort(bars,0 ,bars.length-1)
+  // barsContainer.innerHTML = '';
+  mergeSortInPlace(bars)
   
-  for (let i = 0; i < bars.length; i++) {
-    const bar = document.createElement('div');
-    bar.classList.add('bar');
-    bar.style.height = `${bars[i]}px`;
-    barsContainer.appendChild(bar);
-  }
+  // for (let i = 0; i < bars.length; i++) {
+  //   const bar = document.createElement('div');
+  //   bar.classList.add('bar');
+  //   bar.style.height = `${bars[i]}px`;
+  //   barsContainer.appendChild(bar);
+  // }
   console.log(bars)
   displayItems();
 }
 
 
 
-function sort(arr) 
-{ 
-    let n = arr.length; 
-   
-        // Start with a big gap, then reduce the gap 
-        for (let gap = Math.floor(n/2); gap > 0; gap = Math.floor(gap/2)) 
-        { 
-          
-            for (let i = gap; i < n; i += 1) 
-            { 
-                let temp = arr[i];  
-                let j; 
-                for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) 
-                    arr[j] = arr[j - gap]; 
-                arr[j] = temp; 
-            } 
-        } 
-        return arr; 
-} 
+function shellSortInPlace(arr) {
+  const n = arr.length;
+  let gap = Math.floor(n / 2);
+
+  while (gap > 0) {
+      for (let i = gap; i < n; i++) {
+          const temp = arr[i];
+          let j = i;
+
+          while (j >= gap && arr[j - gap].height > temp.height) {
+              arr[j] = arr[j - gap];
+              j -= gap;
+          }
+
+          arr[j] = temp;
+      }
+
+      gap = Math.floor(gap / 2);
+  }
+}
 
 function shellSort() {
-  barsContainer.innerHTML = '';
-  sort(bars)
+  // barsContainer.innerHTML = '';
+  shellSortInPlace(bars)
   
-  for (let i = 0; i < bars.length; i++) {
-    const bar = document.createElement('div');
-    bar.classList.add('bar');
-    bar.style.height = `${bars[i]}px`;
-    barsContainer.appendChild(bar);
-  }
+  // for (let i = 0; i < bars.length; i++) {
+  //   const bar = document.createElement('div');
+  //   bar.classList.add('bar');
+  //   bar.style.height = `${bars[i]}px`;
+  //   barsContainer.appendChild(bar);
+  // }
   console.log(bars)
   displayItems();
 }
+
 
 generateRandomBars();
 displayItems();
@@ -280,3 +289,4 @@ bubbleSortButton.addEventListener('click',bubbleSort)
 quickSortButton.addEventListener('click',startquicksort)
 mergeSortButton.addEventListener('click',startmergeSort)
 shellSortButton.addEventListener('click',shellSort)
+changeSizeButton.addEventListener('click',wiinput)

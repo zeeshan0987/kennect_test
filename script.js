@@ -285,7 +285,7 @@ function changeSize() {
     const heightInput = document.getElementById("heightInput").value;
     console.log(widthInput)
     console.log(heightInput)
-    let x = document.getElementsByTagName("MAIN")[0];
+    let x = document.getElementById("bars-container");
     x.style.width = `${widthInput}px`;
     x.style.height = `${heightInput}px`;
     // bod.element.style.width=`${widthInput}px`

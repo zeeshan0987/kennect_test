@@ -8,8 +8,7 @@ const mergeSortButton = document.getElementById('mergeSort');
 const shellSortButton = document.getElementById('shellSort');
 const changeSizeButton = document.getElementById('changeSize');
 const display = document.getElementById('display');
-
-
+const bod = document.getElementById('body') 
 let bars = [];
 
 function displayItems() {
@@ -185,11 +184,9 @@ function mergeSortInPlace(arr, start = 0, end = arr.length - 1) {
   if (start < end) {
       const middle = Math.floor((start + end) / 2);
 
-      // Recursively sort the left and right halves
+     
       mergeSortInPlace(arr, start, middle);
       mergeSortInPlace(arr, middle + 1, end);
-
-      // Merge the sorted halves in place
       mergeInPlace(arr, start, middle, end);
   }
 }
@@ -278,7 +275,31 @@ function shellSort() {
   console.log(bars)
   displayItems();
 }
+// Function to change the size of bars based on user input
 
+
+function changeSize() {
+
+    const widthInput = document.getElementById("widthInput").value;
+
+    const heightInput = document.getElementById("heightInput").value;
+    console.log(widthInput)
+    console.log(heightInput)
+    let x = document.getElementsByTagName("MAIN")[0];
+    x.style.width = `${widthInput}px`;
+    x.style.height = `${heightInput}px`;
+    // bod.element.style.width=`${widthInput}px`
+    // body.element.style.height=`${heightInput}px`
+    // body.element.style.width=`${widthInput}px`
+  
+
+    // bar.element.style.width = widthInput + "px";
+
+    // bar.element.style.height = bar.value * (heightInput / 100) + "px";
+
+    
+
+}
 
 generateRandomBars();
 displayItems();
@@ -289,4 +310,4 @@ bubbleSortButton.addEventListener('click',bubbleSort)
 quickSortButton.addEventListener('click',startquicksort)
 mergeSortButton.addEventListener('click',startmergeSort)
 shellSortButton.addEventListener('click',shellSort)
-changeSizeButton.addEventListener('click',wiinput)
+changeSizeButton.addEventListener('click',changeSize)

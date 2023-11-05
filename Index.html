@@ -2,14 +2,20 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
 </head>
 
 <body>
-    <div class="controls">
+  <div id="body">
+
+    <header>
+      <h1 class="custom-heading">Comparison Sorting Algorithms</h1>
+    </header>
+    <main>
+      <div class="controls">
         <button id="randomize">Randomize Array</button>
         <button id="insertionSort">Insertion Sort</button>
         <button id="selectionSort">Selection Sort</button>
@@ -17,21 +23,27 @@
         <button id="quickSort">Quick Sort</button>
         <button id="mergeSort">Merge Sort</button>
         <button id="shellSort">Shell Sort</button>
-        <button id="changeSize">Change Size</button>
-    </div>
-    <div class="container">
+      </div>
+      <div class="container">
         <div id="bars-container">
-            
+
         </div>
 
-        
+      </div>
+    </main>
+    <footer class="custom-footer">
+      <div class="change-size">
+        <button id="changeSize">Change Size</button>
+        <input type="number" id="widthInput" placeholder="Bar Width">
 
-    </div>
-    <div class="input">
-        <input type="text" id="text">
-    </div>
+        <input type="number" id="heightInput" placeholder="Bar Height">
+      </div>
+      <p align="left">Algorithm Visualization</p>
+    </footer>
 
-    <script src="/script.js"></script>
+  </div>
+
+  <script src="/script.js"></script>
 </body>
 
 </html>
